@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<body>
+  <div >
+    <form ng-app="myApp" ng-controller="myCtrl" name="myForm" novalidate>
+<div ng-include="'userAuthFile.html'"> </div>
+<!--<div ng-view></div>-->
+      <p>Enter UserName:
+        <input type="text" ng-model="uName">
+        <span ng-show="myForm.uName.$dirty && myForm.uName.$invalid">
+    <span ng-show="myForm.uName.$error.required">User name is required
+    </span>
+        </span>
+      </p>
+      <p>
+        Enter Password :
+        <Input type="text" ng-model="pwd" name="pwd" required>
+        <span ng-show="myForm.pwd.$dirty && myForm.pwd.$invalid">
+    <span ng-show="myForm.pwd.$error.required">Password is required
+    </span>
+        </span>
+      </p>
+      <button id="submitBtn" ng-click="verify_sub()" ng-disabled="myForm.$invalid">Submit</button>
+
+    
+         <h1>{{errorMsg}}</h1>
+     
+
+    </form>
+  </div>
+  <script>
+    var app = angular.module("myApp", []);
+        app.controller("myCtrl",  function($scope) {
+      $scope.verify_sub = function() {
+               $scope.successMsg="";
+        $scope.errorMsg="";
+        if ($scope.uName == 'test' && $scope.pwd == 'test') {
+          
+          $scope.successMsg = ' Welcome to the Kevin Global';
+         
+        } else {
+          $scope.errorMsg = 'User Name or Password is invalid';
+        }
+      }
+
+    });
+  </script>
+</body>
+
+</html>
